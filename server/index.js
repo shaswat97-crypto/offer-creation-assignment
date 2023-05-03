@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose, { Schema } from "mongoose";
-import { router } from "./routes";
+import { router } from "./routes.js";
+import cors from "cors";
 
 const app = express();
 
@@ -9,6 +10,7 @@ mongoose
   .then(() => console.log("Database connected"))
   .catch((err) => console.log("Error connecting to database: " + err.message));
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", router);
 

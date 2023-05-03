@@ -9,11 +9,11 @@ const offerSchema = new Schema({
   applicableOn: { type: String },
   minOrderValue: { type: Number },
   maxDiscount: { type: Number },
-  startDate: { type: Date, required: true },
+  startDate: { type: String, required: true },
   expirationDate: { type: String, required: true },
-  numCustomers: { type: Number },
+  numCustomers: { type: String },
   totalCustomers: { type: Number },
-  usePerCustomer: { type: Number },
+  usePerCustomer: { type: String },
   usagePerCustomer: { type: Number },
 });
 
