@@ -12,7 +12,7 @@ export const createOffer = async (req, res) => {
 
 export const getAllOffers = async (req, res) => {
   try {
-    const offers = await Offer.find();
+    const offers = await Offer.find().sort({_id:-1});
     res.send(offers);
   } catch (error) {
     res.status(500).send({ message: "Error fetching offers", error });

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./form.css";
 import Datepicker from "./Date";
+import Offer from "./Offer";
 
 function Form() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [allOffers, setAllOffers] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     code: "",
@@ -71,7 +74,7 @@ function Form() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
-    const res = await axios.post("http://localhost:3000/api/offers", formData);
+    const res = await axios.post("/api/offers", formData);
     console.log(res.data);
     setFormData({
       code: "",
@@ -89,7 +92,26 @@ function Form() {
       usePerCustomer: "Limited",
       usagePerCustomer: "",
     });
+    setSelectedDate(null);
+    setSubmitted(!submitted);
   };
+
+  //fetching data
+  useEffect(() => {
+    async function fetch() {
+      console.log("effect");
+      let res = await axios.get("/api/offers");
+      let data = await res.data;
+      setAllOffers(data);
+    }
+    fetch();
+  }, [submitted]);
+
+  let loadCircle = (
+    <div className="productCont">
+      <span className="loader"></span>
+    </div>
+  );
 
   return (
     <>
@@ -306,11 +328,37 @@ function Form() {
             </>
           )}
           <br />
-      <div className="submitcont">
-        <button type="submit">Create Offer</button>
-      </div>
+          <div className="submitcont">
+            <button type="submit">Create Offer</button>
+          </div>
         </form>
       </div>
+
+      {allOffers && allOffers.length == 0 && (
+        <div className="offercont">No offers created</div>
+      )}
+
+      {allOffers && allOffers.length > 0 ? (
+        <>
+          <h1
+            style={{
+              textAlign: "center",
+              marginTop: "50px",
+              borderTop: "solid",
+              paddingTop: "40px",
+            }}
+          >
+            List of offers
+          </h1>
+          <div className="offercont">
+            {allOffers.map((offer) => (
+              <Offer key={offer._id} offer={offer} />
+            ))}
+          </div>
+        </>
+      ) : (
+        loadCircle
+      )}
     </>
   );
 }

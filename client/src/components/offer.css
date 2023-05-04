@@ -1,0 +1,80 @@
+.o-cont{
+    /* width: 100%; */
+    background-image: url('https://i.postimg.cc/T30PTP77/Offer-Base.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: end;
+    min-width: 1100px;
+    height: 575px;
+    margin: 20px 0;
+}
+.o-base{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%;
+}
+
+.o-base button {
+    margin: 0;
+    padding: 0;
+    background-color: #e1705d;
+    color: aliceblue;
+    padding: 10px 100px;
+    border: none;
+    border-radius: 30px;
+    font-size: 45px;
+    margin-top: 30px;
+}
+
+.o-base h1{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.o-base h1 span{
+    font-size: 110px;
+    color: #e1705d;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.o-base h2{
+    font-size: 50px;
+    font-weight: 400;
+    width: 500px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* text-transform: uppercase; */
+}
+
+.o-base h3{
+    font-size: 30px;
+    font-weight: 400;
+    width: 500px;
+    color: #e1705d;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    /* text-transform: uppercase; */
+}
+
+.o-base h4{
+    font-size: 20px;
+    font-weight: 400;
+    width: 500px;
+    color: #e1705d;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* text-transform: uppercase; */
+}

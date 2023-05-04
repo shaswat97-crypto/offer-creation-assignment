@@ -1,19 +1,28 @@
 import express from "express";
 import mongoose, { Schema } from "mongoose";
 import { router } from "./routes.js";
-import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+// import cors from "cors";
+import * as dotenv from 'dotenv'
+dotenv.config()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/offers")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("Database connected"))
   .catch((err) => console.log("Error connecting to database: " + err.message));
 
-app.use(cors());
-app.use(express.json());
-app.use("/api", router);
+// app.use(cors());
+app
+.use(express.json())
+.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)))
+.use("/api", router);
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.listen(process.env.POST, () => {
+  console.log("Server started on port " + process.env.POST);
 });
