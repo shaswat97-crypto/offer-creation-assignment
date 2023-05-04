@@ -334,11 +334,9 @@ function Form() {
         </form>
       </div>
 
-      {allOffers && allOffers.length == 0 && (
+      {allOffers && allOffers.length == 0 ? (
         <div className="offercont">No offers created</div>
-      )}
-
-      {allOffers && allOffers.length > 0 ? (
+      ) : allOffers && allOffers.length > 0 ? (
         <>
           <h1
             style={{
